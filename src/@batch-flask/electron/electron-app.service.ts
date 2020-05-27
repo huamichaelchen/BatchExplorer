@@ -16,7 +16,7 @@ export class ElectronApp {
 
     }
 
-    public getPath(name: string): string {
+    public getPath(name: any): string {
         return this._app.getPath(name);
     }
 }
