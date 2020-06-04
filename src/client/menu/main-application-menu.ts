@@ -87,7 +87,7 @@ export class MainApplicationMenu {
                 { role: "copy" },
                 { role: "paste" },
                 { role: "delete" },
-                { role: "selectall" },
+                { role: "selectAll" },
                 { type: "separator" },
                 {
                     label: "Settings",

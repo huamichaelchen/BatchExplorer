@@ -108,7 +108,7 @@ export class BatchExplorerApplication {
         await loginResponse.started;
 
         this._initializer.setTaskStatus("window", "Loading application");
-        const window = this.openFromArguments(process.argv, false);
+        const window = await this.openFromArguments(process.argv, false);
         if (!window) { return; }
         const windowSub = window.state.subscribe((state) => {
             switch (state) {
@@ -183,7 +183,7 @@ export class BatchExplorerApplication {
         return this.windows.openNewWindow(link);
     }
 
-    public openFromArguments(argv: string[], showWhenReady = true): MainWindow | null {
+    public async openFromArguments(argv: string[], showWhenReady = true): Promise<MainWindow | null> {
         if (ClientConstants.isDev) {
             return this.windows.openNewWindow(undefined, showWhenReady);
         }
@@ -196,16 +196,14 @@ export class BatchExplorerApplication {
             const link = new BatchExplorerLink(arg);
             return this.openLink(link, false);
         } catch (e) {
-            dialog.showMessageBox({
+            await dialog.showMessageBox({
                 type: "error",
                 title: "Cannot open given link in BatchExplorer",
                 message: e.message,
-            }, () => {
-                // If there is no window open we quit the app
-                if (this.windows.size === 0) {
-                    this.quit();
-                }
             });
+            if (this.windows.size === 0) {
+                this.quit();
+            }
             return null;
         }
     }
