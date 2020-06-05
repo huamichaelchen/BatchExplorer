@@ -284,7 +284,8 @@ export class BatchExplorerApplication {
             this.telemetryService.flush(true);
         });
 
-        process.on("unhandledRejection", r => {
+        // tslint:disable-next-line: ban-types
+        process.on("unhandledRejection", (r: Error) => {
             log.error("Unhandled promise error:", r);
             this.telemetryService.trackError(r);
             this.telemetryService.flush(true);

@@ -117,7 +117,7 @@ export class MainWindow extends GenericWindow {
     private _setupEvents(window: Electron.BrowserWindow) {
         window.webContents.on("crashed", (event: Electron.Event, killed: boolean) => {
             log.error("There was a crash", { event, killed });
-            this.batchExplorerApp.recoverWindow.createWithError(event.returnValue);
+            this.batchExplorerApp.recoverWindow.createWithError("The window has crashed: killed=" + event.returnValue);
         });
 
         ipcMain.once("app-ready", (event) => {
