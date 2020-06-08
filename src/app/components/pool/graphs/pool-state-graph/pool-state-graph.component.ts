@@ -201,7 +201,7 @@ export class PoolStateGraphComponent implements OnChanges, OnDestroy {
                     display: this.interactive,
                     ticks: {
                         beginAtZero: true,
-                        callback: value => { if (value % 1 === 0) { return value; } },
+                        callback: value => { if (value as number % 1 === 0) { return value; } },
                         display: this.interactive,
                     },
                     stacked: true,
