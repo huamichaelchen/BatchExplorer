@@ -187,8 +187,6 @@ export class PoolStateGraphComponent implements OnChanges, OnDestroy {
             scales: {
                 xAxes: [{
                     display: this.interactive,
-                    categoryPercentage: 1.0,
-                    barPercentage: 0.9,
                     stacked: true,
                     gridLines: {
                         display: false,
