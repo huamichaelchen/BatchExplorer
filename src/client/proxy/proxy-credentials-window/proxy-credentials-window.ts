@@ -28,6 +28,7 @@ export class ProxyCredentialsWindow extends UniqueWindow {
             center: true,
             webPreferences: {
                 nodeIntegration: true,
+                enableRemoteModule: true,
             },
         });
         window.loadURL(url);

@@ -75,6 +75,7 @@ export class MainWindow extends GenericWindow {
                 webSecurity: false,
                 allowRunningInsecureContent: false,
                 nodeIntegration: true,
+                enableRemoteModule: true,
             },
         });
 
@@ -98,18 +99,6 @@ export class MainWindow extends GenericWindow {
         // Open the DevTools.
         if (process.env.NODE_ENV !== "production") {
             window.webContents.openDevTools();
-            // activate devtron for the user if they have it installed and it's not already added
-            try {
-                const devtronAlreadyAdded = BrowserWindow.getDevToolsExtensions &&
-                    {}.hasOwnProperty.call(BrowserWindow.getDevToolsExtensions(), "devtron");
-
-                if (!devtronAlreadyAdded) {
-                    BrowserWindow.addDevToolsExtension(require("devtron").path);
-                }
-            } catch (error) {
-                log.error("Error adding devtron", error);
-            }
-
         }
 
         return window;

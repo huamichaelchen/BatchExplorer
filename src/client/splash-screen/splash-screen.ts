@@ -34,6 +34,7 @@ export class SplashScreen extends UniqueWindow {
             center: true,
             webPreferences: {
                 nodeIntegration: true,
+                enableRemoteModule: true,
             },
         });
         window.loadURL(url);
