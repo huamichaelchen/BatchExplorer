@@ -1,7 +1,7 @@
 import { AUTO_UPDATE_MAIN_SERVICE_TOKEN } from "@batch-flask/electron";
 import { log } from "@batch-flask/utils";
 import { TelemetryManager } from "client/core/telemetry";
-import { BrowserWindow, app, ipcMain } from "electron";
+import { BrowserWindow, app, ipcMain, nativeImage } from "electron";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Constants } from "../client-constants";
 import { BatchExplorerApplication, GenericWindow } from "../core";
@@ -65,7 +65,7 @@ export class MainWindow extends GenericWindow {
         const window = new BrowserWindow({
             title: app.name,
             height: 1000,
-            icon: Constants.urls.icon,
+            icon: nativeImage.createFromDataURL(Constants.urls.icon),
             width: 1600,
             minWidth: 1200,
             minHeight: 300,
